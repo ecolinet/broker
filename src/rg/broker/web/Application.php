@@ -29,8 +29,7 @@ class Application {
         $app->get('/', function() use($app, $that) {
             /** @var \Slim $app */
             /** @var Application $that  */
-            $mdParser = new \dflydev\markdown\MarkdownParser();
-            $content = $mdParser->transformMarkdown(file_get_contents(ROOT . '/README.md'));
+            $content = \Michelf\Markdown::defaultTransform(file_get_contents(ROOT . '/README.md'));
             $app->render('home.php', array(
                 'repositories' => $that->getRepositories(),
                 'content' => $content
